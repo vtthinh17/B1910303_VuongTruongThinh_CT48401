@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
-import 'cartModel.dart';
+import 'cart_model.dart';
 class HomePage extends StatelessWidget {
-
-List <Product> _products = [
+final List <Product> _products = [
     Product(
         id: 1,
         title: "Apple",
         price: 20.0,
-        imgUrl: "https://img.icons8.com/plasticine/2x/apple.png",
+        imgUrl: "assets/images/apple.png",
         quantity: 1),
     Product(
         id: 2,
         title: "Banana",
         price: 40.0,
-        imgUrl: "https://img.icons8.com/cotton/2x/banana.png",
+        imgUrl: "assets/images/banana.png",
         quantity: 1),
     Product(
         id: 3,
         title: "Orange",
         price: 20.0,
-        imgUrl: "https://img.icons8.com/cotton/2x/orange.png",
+        imgUrl: "assets/images/orange.png",
         quantity: 1),
     Product(
         id: 4,
         title: "Melon",
         price: 40.0,
-        imgUrl: "https://img.icons8.com/cotton/2x/watermelon.png",
+        imgUrl: "assets/images/watermelon.png",
         quantity: 1),
     Product(
         id: 5,
         title: "Avocado",
         price: 25.0,
-        imgUrl: "https://img.icons8.com/cotton/2x/avocado.png",
+        imgUrl: "assets/images/avocado.png",
         quantity: 1),
   ];
+
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ List <Product> _products = [
       backgroundColor: Colors.indigo[50],
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: Text("HomePage"),
+        title: const Text("HomePage"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
@@ -50,17 +51,20 @@ List <Product> _products = [
         ],
       ),
       body:GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 8, crossAxisSpacing: 8, childAspectRatio: 0.8),
+        gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 8, crossAxisSpacing: 8, childAspectRatio: 0.8, mainAxisExtent: 300),
         itemCount: _products.length,
         itemBuilder: (context, index) {
-          return Card(child: Column(
-            children: <Widget>[
-              Image.network(_products[index].imgUrl),
-              Text(_products[index].title),
-              Text(_products[index].price.toString()+"\$"), 
-              OutlinedButton(onPressed: (){}, child: Text("Add to Cart"))                   
-            ],
-          ),);
+          return Card(
+            child: SingleChildScrollView(
+              child: Column(
+              children: <Widget>[
+                Image.asset(_products[index].imgUrl,),
+                Text(_products[index].title),
+                Text(_products[index].price.toString()+"\$"), 
+                OutlinedButton(onPressed: (){}, child: const Text("Add to Cart"))                   
+              ],
+                      ),
+            ),);
         }));
 }
 

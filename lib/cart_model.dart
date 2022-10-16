@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Product {
   int id;
   String title;
@@ -8,3 +6,4 @@ class Product {
   int quantity;
   Product({required this.id,required this.title,required this.price,required this.quantity,required this.imgUrl});
 }
+
